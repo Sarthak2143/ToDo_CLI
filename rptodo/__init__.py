@@ -2,8 +2,8 @@
 Top level package for ToDo_CLI
 """
 
-__app_name__ = "ToDo_CLI"
-__app_version__ = "0.1.0"
+__app_name__ = "rptodo"
+__version__ = "0.1.0"
 
 (
     SUCCESS,
