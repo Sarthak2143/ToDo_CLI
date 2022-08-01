@@ -1,7 +1,7 @@
 """
 This module provides our app Model-Controller.
 """
-from pathlib import Payh
+from pathlib import Path
 from typing import Any, Dict, NamedTuple
 from rptodo.database import DataBaseHandler
 
@@ -10,5 +10,5 @@ class CurrentTodo(NamedTuple):
     error: int
 
 class Todoer:
-    def __init__(self, db.path: Path) -> None:
+    def __init__(self, db_path: Path) -> None:
         self._db_handler = DataBaseHandler(db_path)
