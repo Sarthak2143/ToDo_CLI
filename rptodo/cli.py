@@ -5,7 +5,9 @@ This module provides the ToDo_CLI CLI.
 from typing import Optional, List
 from pathlib import Path
 import typer
-from rptodo import ERRORS, __app_name__, __version__, ERRORS, config, database
+from rptodo import (
+        ERRORS, __app_name__, __version__, ERRORS, config, database, rptodo
+)
 
 app = typer.Typer()
 
