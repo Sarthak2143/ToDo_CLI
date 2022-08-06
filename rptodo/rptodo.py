@@ -4,7 +4,7 @@ This module provides our app Model-Controller.
 from pathlib import Path
 from typing import Any, Dict, NamedTuple, List
 from rptodo.database import DataBaseHandler
-from rptodo import DB_READ_ERROR
+from rptodo import DB_READ_ERROR, ID_ERROR
 
 class CurrentTodo(NamedTuple):
     todo: Dict[str, Any]
@@ -35,3 +35,16 @@ class Todoer:
         """Returns the current to-do list."""
         read = self._db_handler.read_todos()
         return read.todo_list
+
+    def set_done(self, todo_id: int) -> CurrentTodo:
+        """Set a todo as done"""
+        read = self._db_handler.read_todos()
+        if read.error:
+            return CurrentTodo({}, read.error)
+        try:
+            todo = read.todo_list[todo_id - 1]
+        except IndexError:
+            return CurrentTodo({}, ID_ERROR)
+        todo["Done"] = True
+        write = self._db_handler.write_todod(read.todo_list)
+        return CurrentTodo(todo, write.error)
