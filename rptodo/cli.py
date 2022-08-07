@@ -132,6 +132,48 @@ def set_done(todo_id: int = typer.Argument(...)) -> None:
             fg = typer.colors.GREEN,
         )
 
+@app.command()
+def remove(
+    todo_id: int = typer.Argument(...),
+    force: bool = typer.Option(
+        False,
+        "-f",
+        "--force",
+        help = "Force deletion without confirmation.",
+    ),
+) -> None:
+    todoer = get_todoer()
+    def _remove():
+        todo, error = todoer.remove(todo_id)
+        if error:
+            typer.secho(
+                f'Removing to-do # {todo_id} failed with "{ERRORS[error]}"!',
+                fg = typer.colors.RED,
+            )
+            raise typer.Exit(1)
+        else:
+            typer.secho(
+                f"""to-do #{todo_id}: '{todo["Description"]}' was removed. """,
+                fg = typer.colors.GREEN,
+            )
+    if force:
+        _remove()
+    else:
+        todo_list = todoer.get_todo_list()
+        try:
+            todo = todo_list[todo_id - 1]
+        except IndexError:
+            typer.secho("Invalid TODO_ID", fg=typer.colors.RED)
+            raise typer.Exit(1)
+        delete = typer.confirm(
+            f"Delete to-do # {todo_id}: {todo['Description']}?"
+        )
+        if delete:
+            _remove()
+        else:
+            typer.echo("Operation cancelled.")
+
+
 @app.callback()
 def main(
     version: Optional[bool] = typer.Option(
