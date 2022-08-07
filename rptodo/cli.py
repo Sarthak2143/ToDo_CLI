@@ -20,7 +20,7 @@ def init(
         prompt = "to-do database location?",
     ),
 ) -> None:
-    """Initialize the to-do database"""
+    """Initialize the to-do database."""
     app_init_error = config.init_app(db_path)
     if app_init_error:
         typer.secho(
@@ -118,7 +118,7 @@ def list_all() -> None:
 
 @app.command(name="complete")
 def set_done(todo_id: int = typer.Argument(...)) -> None:
-    """Completes a TODO by setting its Done value to True by using TODO_ID"""
+    """Completes a to-do."""
     todoer = get_todoer()
     todo, error = todoer.set_done(todo_id)
     if error:
@@ -154,7 +154,7 @@ def remove(
             raise typer.Exit(1)
         else:
             typer.secho(
-                f"""to-do #{todo_id}: '{todo["Description"]}' was removed. """,
+                f"""to-do # {todo_id}: '{todo["Description"]}' was removed. """,
                 fg = typer.colors.GREEN,
             )
     if force:
@@ -174,6 +174,29 @@ def remove(
         else:
             typer.echo("Operation cancelled.")
 
+@app.command(name="clear")
+def remove_all(
+        force: bool = typer.Option(
+            ...,
+            prompt = "Deletes all to-dos?",
+            help = "Force deletion without confirmation.",
+        ),
+) -> None:
+    """Remove all to-dos."""
+    todoer = get_todoer()
+    if force:
+        error = todoer.remove_all().error
+        if error:
+            typer.secho(
+                f'Removing all to-dos failed with\
+                "{ERRORS[error]}".',
+                fg = typer.colors.RED,
+            )
+            raise typer.Exit(1)
+        else:
+            typer.secho("All to-dos were removed", fg = typer.colors.GREEN)
+    else:
+        typer.echo("Operation cancelled.")
 
 @app.callback()
 def main(
