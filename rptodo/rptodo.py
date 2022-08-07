@@ -51,7 +51,7 @@ class Todoer:
 
     def remove(self, todo_id: int) -> CurrentTodo:
         """Remove a todo from the database using its ID or index"""
-        read = self._db_handler.read_todo()
+        read = self._db_handler.read_todos()
         if read.error:
             return CurrentTodo({}, read.error)
         try:

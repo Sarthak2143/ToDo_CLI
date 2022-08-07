@@ -142,6 +142,7 @@ def remove(
         help = "Force deletion without confirmation.",
     ),
 ) -> None:
+    """Deletes a todo using ID or index."""
     todoer = get_todoer()
     def _remove():
         todo, error = todoer.remove(todo_id)
