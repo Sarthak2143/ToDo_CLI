@@ -7,12 +7,30 @@ The application has a user-friendly CLI that allows you to set up the to-do data
 - Run the app as a module
 
 ```bash
-python3 -m rptodo
+python3 -m rptodo --help
 ```
 
 ```bash
 Usage: rptodo [OPTIONS] COMMAND [ARGS]...
-Try 'rptodo --help' for help.
+
+Options:
+  -v, --version         Show the application's
+                        version and exit.
+  --install-completion  Install completion for the
+                        current shell.
+  --show-completion     Show completion for the
+                        current shell, to copy it
+                        or customize the
+                        installation.
+  --help                Show this message and exit.
+
+Commands:
+  add       Add a new to-do with a description.
+  clear     Remove all to-dos.
+  complete  Completes a to-do.
+  init      Initialize the to-do database.
+  list      List all todos.
+  remove    Deletes a todo using ID or index.
 ```
 
 - Basic commands:
@@ -23,8 +41,8 @@ Try 'rptodo --help' for help.
 
 | Command | Description |
 | --- | --- |
-| init | Initializes the application’s to-do database |
-| `add` DESCRIPTION | Adds a new to-do to the database with a description |
+| `init` | Initializes the application’s to-do database |
+| `add` **DESCRIPTION** | Adds a new to-do to the database with a description |
 | `list` | Lists all the to-dos in the database |
 | `complete` **TODO_ID** | Completes a to-do by setting it as done using its ID |
 | `remove` **TODO_ID** | Removes a to-do from the database using its ID |
