@@ -14,7 +14,7 @@ python3 -m rptodo --help
 Usage: rptodo [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  -v, --version         Show the application's
+  -v, --version         Show the application\'s
                         version and exit.
   --install-completion  Install completion for the
                         current shell.
