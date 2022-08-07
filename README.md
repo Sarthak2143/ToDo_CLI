@@ -23,8 +23,7 @@ Try 'rptodo --help' for help.
 
 | Command | Description |
 | --- | --- |
-| init | Initializes the application’s to-do database
-|
+| init | Initializes the application’s to-do database |
 | `add` DESCRIPTION | Adds a new to-do to the database with a description |
 | `list` | Lists all the to-dos in the database |
 | `complete` **TODO_ID** | Completes a to-do by setting it as done using its ID |
@@ -90,7 +89,7 @@ For now, there are'nt much tests, but its in my todo.
 
 ## TODO
 
-- [  ] Add support for dates and deadlines.
-- [  ] Write more unit tests.
+- [ ] Add support for dates and deadlines.
+- [ ] Write more unit tests.
 
 ---
