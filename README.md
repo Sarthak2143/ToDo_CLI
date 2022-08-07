@@ -34,8 +34,8 @@ Commands:
 ```
 
 - Basic commands:
-    - -v or --version shows the current version and exits the application.
-    - --help shows the global help message for the entire application.
+    - `-v` or `--version` shows the current version and exits the application.
+    - `--help` shows the global help message for the entire application.
 
 - Regarding managing a to-do list, our application will provide commands to initialize the app, add and remove to-dos, and manage the to-do completion status:
 
